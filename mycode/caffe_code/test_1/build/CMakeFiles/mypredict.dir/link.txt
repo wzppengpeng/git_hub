@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -DCPU_ONLY    CMakeFiles/mypredict.dir/mypredict.cpp.o  -o mypredict -rdynamic -lcaffe -lglog -lprotobuf 

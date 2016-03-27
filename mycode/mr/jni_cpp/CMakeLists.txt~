@@ -1,0 +1,12 @@
+project(IMAGE)
+	#find_package(OpenCV REQUIRED)
+	cmake_minimum_required(VERSION 2.8.0 FATAL_ERROR)
+	link_directories(/home/wzp/Documents/mycode/caffe_code/badboy/build)
+	
+	include_directories(/usr/lib/jvm/java-7-openjdk-amd64/include)
+	include_directories(/usr/lib/jvm/java-7-openjdk-amd64/include/linux)
+	include_directories(/usr/include)
+	include_directories(/home/wzp/Documents/mycode/caffe_code/badboy)
+	add_library(predictImage SHARED mr_jni_Image_jni)
+	target_link_libraries(predictImage predict)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

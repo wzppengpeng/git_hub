@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wzp/Documents/mycode/caffe_code/mypredict.cpp
+cstring
+-
+cstdlib
+-
+vector
+-
+string
+-
+iostream
+-
+stdio.h
+-
+caffe/caffe.hpp
+/home/wzp/Documents/mycode/caffe_code/caffe/caffe.hpp
+caffe/util/io.hpp
+/home/wzp/Documents/mycode/caffe_code/caffe/util/io.hpp
+caffe/blob.hpp
+/home/wzp/Documents/mycode/caffe_code/caffe/blob.hpp
+

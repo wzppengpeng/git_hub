@@ -1,0 +1,4 @@
+image_path = /home/wzp/temp.jpg
+net_file = /home/wzp/Downloads/caffe-lstm/examples/cifar10/cifar10_net_test.prototxt
+train_val_file = /home/wzp/Downloads/caffe-lstm/examples/cifar10/cifar10_quick_iter_5000.caffemodel.h5
+mean_file = /home/wzp/Downloads/caffe-lstm/examples/cifar10/mean.binaryproto
