@@ -1,6 +1,25 @@
+
+#include <memory>
+#include <string>
+
 #include "mr_jni_Image_jni.h"
-#include "badboy_jni.h"
+#include "badboy.h"
 #include "result.h"
+
+using badboy::Badboy;
+
+static std::shared_ptr<Badboy> boy = NULL;
+
+JNIEXPORT void JNICALL Java_mr_jni_Image_1jni_initialize
+(JNIEnv *, jobject)
+{
+	boy = (std::shared_ptr<Badboy>)new Badboy();
+	const std::string config_file = "/home/wzp/Documents/mycode/caffe_code/predict/build/config.ini";
+	boy->initialize(config_file);
+}
+
+
+
 JNIEXPORT void JNICALL Java_mr_jni_Image_1jni_predictImage
 (JNIEnv *env, jobject obj, jobject img, jobject re)
 {
@@ -18,7 +37,7 @@ JNIEXPORT void JNICALL Java_mr_jni_Image_1jni_predictImage
 	int height_c = height;
 	int width_c = width;
 	unsigned char * data_ = (unsigned char*)data;
-	badboy::Result ret = badboy::badboy_jni(height_c, width_c, data_);
+	badboy::Result ret = boy->testImage(height_c, width_c, data_);
 
 	jclass clc_re = env->GetObjectClass(re);
 	jfieldID fidLabel = env->GetFieldID(clc_re, "label", "I");

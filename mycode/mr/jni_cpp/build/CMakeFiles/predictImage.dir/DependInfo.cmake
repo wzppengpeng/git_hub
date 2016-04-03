@@ -16,7 +16,7 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "/usr/lib/jvm/jdk1.7.0_80/include"
   "/usr/lib/jvm/jdk1.7.0_80/include/linux"
-  "/home/wzp/Documents/mycode/caffe_code/badboy"
+  "/home/wzp/Documents/mycode/caffe_code/predict"
   )
 set(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 set(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

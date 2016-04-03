@@ -1,1 +1,1 @@
-/usr/bin/c++  -fPIC  -std=c++11   -shared -Wl,-soname,libpredictImage.so -o libpredictImage.so CMakeFiles/predictImage.dir/mr_jni_Image_jni.cpp.o  -L/home/wzp/Documents/mycode/caffe_code/badboy/build -lpredict -Wl,-rpath,/home/wzp/Documents/mycode/caffe_code/badboy/build 
+/usr/bin/c++  -fPIC  -std=c++11   -shared -Wl,-soname,libpredictImage.so -o libpredictImage.so CMakeFiles/predictImage.dir/mr_jni_Image_jni.cpp.o  -L/home/wzp/Documents/mycode/caffe_code/predict/build -lpredict -Wl,-rpath,/home/wzp/Documents/mycode/caffe_code/predict/build 

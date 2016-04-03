@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     mr_jni_Image_jni
+ * Method:    initialize
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_mr_jni_Image_1jni_initialize
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     mr_jni_Image_jni
  * Method:    predictImage
  * Signature: (Lmr/jni/ImageContainer;Lmr/jni/Result;)V
  */
