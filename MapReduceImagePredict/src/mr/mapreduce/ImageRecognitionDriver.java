@@ -27,6 +27,9 @@ public class ImageRecognitionDriver {
 		
 		public void map(Text key,IntWritable value,Context context)throws IOException, InterruptedException 
 		{
+			//initialize the CNN-net
+			image_jni.initialize();
+			
 			Configuration conf=new Configuration();
 			String SequenceFilePath=key.toString();//the hdfs path of sequence image files
 			Path path=new Path(SequenceFilePath);
