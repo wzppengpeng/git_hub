@@ -10,6 +10,8 @@ using namespace caffe;
 using cv::Mat;
 using std::string;
 using std::vector;
+using std::cout;
+using std::endl;
 
 ImagePredictor::ImagePredictor(const std::string& net_file, const std::string& train_val_file, const int resized_height_, const int resized_width_, const int cropped_height_, const int cropped_width_)
 	: caffe_test_net(),
@@ -48,17 +50,18 @@ Result ImagePredictor::predict(const cv::Mat& image, const std::string& mean_fil
 
 	//get the max class and the calue of this class
 	float max = 0;
-	float sum = 0;
+	//float sum = 0;
 	int max_i = 0;
-	for (int i = 0; i < 2; ++i) {
+	for (int i = 0; i < result[0]->count(); ++i) {
 		float value = result[0]->cpu_data()[i];
-		sum += value;
+
+		//sum += value;
 		if (max < value) {
 			max = value;
 			max_i = i;
 		}
 	}
-	max /= sum;
+	//max /= sum;
 	Result ret;
 	ret.class_num = max_i;
 	ret.value = max;
@@ -85,17 +88,18 @@ Result ImagePredictor::predict(const int height, const int width, const unsigned
 
 	//get the max class and the calue of this class
 	float max = 0;
-	float sum = 0;
+	// float sum = 0;
 	int max_i = 0;
 	for (int i = 0; i < 2; ++i) {
 		float value = result[0]->cpu_data()[i];
-		sum += value;
+
+		// sum += value;
 		if (max < value) {
 			max = value;
 			max_i = i;
 		}
 	}
-	max /= sum;
+	// max /= sum;
 	Result ret;
 	ret.class_num = max_i;
 	ret.value = max;
@@ -138,17 +142,30 @@ void ImagePredictor::ConvertMatToBlob(const cv::Mat& image, caffe::Blob<float>* 
 	Blob<float>* mean = new Blob<float>();
 	ReadMeanToBlob(mean_file, mean);
 
-	const float* mean_ = mean->cpu_data();
-	float* data = blob->mutable_cpu_data();
-	for (int h = 0; h < s_height; ++h) {
-		const uchar* ptr = image.ptr<uchar>(h);
-		int imageIndex = 0;
-		for (int w = 0; w < s_width; ++w) {
-			for (int c = 0; c < 3; ++c) {
-				int topIndex = (c * s_height + h) * s_width + w;
-				float pixel = static_cast<float>(ptr[imageIndex ++]);
-				int meanIndex = (c * resized_height + hOffset + h) * resized_width + wOffset + w;;
-				data[topIndex] = pixel - mean_[meanIndex];
+	std::vector<cv::Mat> channels;
+	float *mean_data = mean->mutable_cpu_data();
+	for (int c = 0; c < mean->channels(); ++ c) {
+		cv:: Mat tmp(mean->height(), mean->width(), CV_32FC1, mean_data);
+		channels.push_back(tmp);
+		mean_data += mean->height() * mean->width();
+	}
+	cv::Mat channels_mat;
+	cv::merge(channels, channels_mat);
+
+	cv::Scalar channel_mean = cv::mean(channels_mat);
+
+	int channel = croppedImage.channels();
+	int height = croppedImage.rows;
+	int width = croppedImage.cols;
+
+	blob->Reshape(1, channel, height, width);
+
+	float *data = blob->mutable_cpu_data();
+	for (int c = 0; c < channel; ++ c) {
+		for  (int h = 0; h < height; ++ h) {
+			const uchar *p = croppedImage.ptr<uchar>(h);
+			for (int w = 0; w < width; ++ w) {
+				data[blob->offset(0, c, h, w)] = (float) * (p + w * channel + c) - channel_mean[1, c] ;
 			}
 		}
 	}

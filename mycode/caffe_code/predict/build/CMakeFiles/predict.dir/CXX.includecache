@@ -6,28 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/wzp/Documents/mycode/caffe_code/predict/Config.h
-string
--
-map
--
-iostream
--
-fstream
--
-sstream
--
-
-/home/wzp/Documents/mycode/caffe_code/predict/badboy.h
-string
--
-memory
--
-opencv2/opencv.hpp
--
-result.h
-/home/wzp/Documents/mycode/caffe_code/predict/result.h
-
 /home/wzp/Documents/mycode/caffe_code/predict/image_predictor.cpp
 vector
 -
@@ -49,26 +27,6 @@ memory
 -
 result.h
 /home/wzp/Documents/mycode/caffe_code/predict/result.h
-
-/home/wzp/Documents/mycode/caffe_code/predict/recognizer.cpp
-badboy.h
-/home/wzp/Documents/mycode/caffe_code/predict/badboy.h
-recognizer.h
-/home/wzp/Documents/mycode/caffe_code/predict/recognizer.h
-Config.h
-/home/wzp/Documents/mycode/caffe_code/predict/Config.h
-assert.h
--
-
-/home/wzp/Documents/mycode/caffe_code/predict/recognizer.h
-string
--
-opencv2/opencv.hpp
--
-result.h
-/home/wzp/Documents/mycode/caffe_code/predict/result.h
-image_predictor.h
-/home/wzp/Documents/mycode/caffe_code/predict/image_predictor.h
 
 /home/wzp/Documents/mycode/caffe_code/predict/result.h
 
