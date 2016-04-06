@@ -25,7 +25,10 @@ private:
 	std::string m_net_file;
 	std::string m_train_val_file;
 	std::string m_mean_file;
-
+	int resized_height;
+	int resized_width;
+	int cropped_height;
+	int cropped_width;
 
 	void unInitialize();
 	void parseConfigFile(const std::string& config_file);

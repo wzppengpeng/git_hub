@@ -38,7 +38,11 @@ Recognizer::Recognizer()
 	  m_imagePath(""),
 	  m_net_file(""),
 	  m_train_val_file(""),
-	  m_mean_file("")
+	  m_mean_file(""),
+	  resized_height(0),
+	  resized_width(0),
+	  cropped_height(0),
+	  cropped_width(0)
 
 {
 }
@@ -76,7 +80,7 @@ void Recognizer::initialize(const std::string& config_file)
 	}
 
 	parseConfigFile(config_file);
-	image_predictor = new ImagePredictor(m_net_file, m_train_val_file);
+	image_predictor = new ImagePredictor(m_net_file, m_train_val_file, resized_height, resized_width, cropped_height, cropped_width);
 
 	isInitialized = true;
 }
@@ -112,4 +116,8 @@ void Recognizer::parseConfigFile(const std::string& config_file)
 	m_net_file = config.Read("net_file", m_net_file);
 	m_train_val_file = config.Read("train_val_file", m_train_val_file);
 	m_mean_file = config.Read("mean_file", m_mean_file);
+	resized_height = config.Read("resized_height", resized_height);
+	resized_width = config.Read("resized_width", resized_width);
+	cropped_height = config.Read("cropped_height", cropped_height);
+	cropped_width = config.Read("cropped_width", cropped_width);
 }
